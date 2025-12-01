@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto Integrador: CRM - Java & SQL</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         /* Configuração de fonte limpa */
@@ -36,10 +36,87 @@
             color: #93C5FD; /* Cor do texto azul claro para ativo */
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
         }
+
+        /* Estilo específico do Modal de Perfil (Inspirado no Discord) */
+        .discord-modal {
+            background-color: #202225; /* Fundo principal do modal (quase preto) */
+            color: #FFFFFF; /* Texto branco */
+            border-radius: 8px;
+            box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 440px;
+        }
+
+        .discord-header {
+            /* Banner - as cores específicas virão do JavaScript */
+            height: 100px; 
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .discord-avatar-container {
+            /* Corrigido para Relative para evitar sobreposições e quebra de layout */
+            position: relative;
+            margin-top: -60px; /* Sobe o container do avatar */
+            padding-left: 16px;
+        }
+
+        .discord-avatar {
+            border: 6px solid #202225; /* Borda da foto de perfil */
+            background-color: #17181a; /* Cor de fundo do avatar */
+            width: 92px;
+            height: 92px;
+            /* Corrigido: Removido top/left absolute */
+        }
+
+        .discord-content {
+            padding-top: 16px; /* Espaço para o avatar */
+            background-color: #2f3136; /* Fundo do corpo do perfil */
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .discord-role-badge {
+            background-color: #3b82f6; /* Cor do cargo (azul padrão) */
+        }
     </style>
 </head>
 <body class="min-h-screen">
 
+    <div id="profileModal" class="hidden fixed inset-0 z-[100] bg-black bg-opacity-75 flex items-center justify-center p-4" onclick="closeProfileModal()">
+        <div class="discord-modal relative" onclick="event.stopPropagation()">
+            <div id="profile-header" class="discord-header bg-gray-600"></div>
+            
+            <div class="discord-avatar-container">
+                <img id="profile-photo" class="discord-avatar rounded-full object-cover" src="https://via.placeholder.com/92/202225/FFFFFF?text=?" alt="Foto de Perfil">
+            </div>
+
+            <div class="discord-content p-4 space-y-4">
+                
+                <div class="border-b border-gray-600 pb-4">
+                    <h2 id="profile-name" class="text-3xl font-extrabold">Nome do Membro</h2>
+                    <span id="profile-role" class="discord-role-badge text-xs font-bold px-2 py-1 rounded-full uppercase mt-1 inline-block">Função no Projeto</span>
+                </div>
+                
+                <div class="space-y-2">
+                    <p class="text-xs font-semibold uppercase text-gray-400">Sobre Mim</p>
+                    <p id="profile-bio" class="text-sm text-gray-300 italic">Bio do Membro.</p>
+                </div>
+                
+                <div id="profile-links" class="pt-2">
+                    <p class="text-xs font-semibold uppercase text-gray-400 mb-2">Links</p>
+                    <a id="profile-github" href="#" target="_blank" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition duration-200">
+                        <i class="fab fa-github mr-2"></i>
+                        <span class="text-sm">Repositório Pessoal</span>
+                    </a>
+                </div>
+
+                <button onclick="closeProfileModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition duration-200">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
     <nav class="sticky top-0 z-50 bg-gray-900 shadow-xl border-b border-cyan-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
@@ -80,16 +157,16 @@
                 Java & SQL Server - Integração Completa
             </h2>
             <div class="mt-8">
-                <a href="[LINK_DO_REPOSITORIO_OU_DEMO]" target="_blank" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-blue-600 hover:bg-blue-700 transition duration-300 transform hover:scale-105">
+                <a href="https://github.com/ChristopherDond/CRM.Java/blob/main/index2.html" target="_blank" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-blue-600 hover:bg-blue-700 transition duration-300 transform hover:scale-105">
                     <i class="fab fa-github mr-2"></i> Ver Repositório Completo
                 </a>
             </div>
         </header>
-    
+        
         <main class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
-    
+        
             <div class="lg:col-span-1 space-y-12">
-    
+        
                 <section id="proposito" class="bg-gray-900 p-8 rounded-xl shadow-2xl border border-gray-700" data-aos="fade-right">
                     <h3 class="section-header text-3xl font-bold pl-4 mb-6 pb-2">
                         <i class="fas fa-bullseye mr-3"></i> Propósito Central
@@ -117,30 +194,42 @@
                         
                     </div>
                 </section>
-    
+        
                 <section id="equipe" class="bg-gray-900 p-8 rounded-xl shadow-2xl border border-gray-700" data-aos="fade-right" data-aos-delay="400">
                     <h3 class="section-header text-3xl font-bold pl-4 mb-6 pb-2">
                         <i class="fas fa-users-cog mr-3"></i> A Equipe por tras do projeto
                     </h3>
                     <ul class="grid grid-cols-2 gap-4 text-lg text-white">
-                        <li class="flex items-center p-2 rounded-md hover:bg-gray-800 transition duration-200"><i class="fas fa-user-circle mr-3 text-cyan-400"></i> Christopher</li>
-                        <li class="flex items-center p-2 rounded-md hover:bg-gray-800 transition duration-200"><i class="fas fa-user-circle mr-3 text-cyan-400"></i> Gabryel</li>
-                        <li class="flex items-center p-2 rounded-md hover:bg-gray-800 transition duration-200"><i class="fas fa-user-circle mr-3 text-cyan-400"></i> Mauricio</li>
-                        <li class="flex items-center p-2 rounded-md hover:bg-gray-800 transition duration-200"><i class="fas fa-user-circle mr-3 text-cyan-400"></i> Henrique</li>
-                        <li class="flex items-center p-2 rounded-md hover:bg-gray-800 transition duration-200"><i class="fas fa-user-circle mr-3 text-cyan-400"></i> Nicole</li>
-                        <li class="flex items-center p-2 rounded-md hover:bg-gray-800 transition duration-200"><i class="fas fa-user-circle mr-3 text-cyan-400"></i> Kauan</li>
+                        <li class="flex items-center p-2 rounded-md hover:bg-gray-800 transition duration-200 cursor-pointer" onclick="openProfileModal('christopher')">
+                            <i class="fas fa-user-circle mr-3 text-cyan-400"></i> Christopher
+                        </li>
+                        <li class="flex items-center p-2 rounded-md hover:bg-gray-800 transition duration-200 cursor-pointer" onclick="openProfileModal('gabryel')">
+                            <i class="fas fa-user-circle mr-3 text-cyan-400"></i> Gabryel
+                        </li>
+                        <li class="flex items-center p-2 rounded-md hover:bg-gray-800 transition duration-200 cursor-pointer" onclick="openProfileModal('mauricio')">
+                            <i class="fas fa-user-circle mr-3 text-cyan-400"></i> Mauricio
+                        </li>
+                        <li class="flex items-center p-2 rounded-md hover:bg-gray-800 transition duration-200 cursor-pointer" onclick="openProfileModal('henrique')">
+                            <i class="fas fa-user-circle mr-3 text-cyan-400"></i> Henrique
+                        </li>
+                        <li class="flex items-center p-2 rounded-md hover:bg-gray-800 transition duration-200 cursor-pointer" onclick="openProfileModal('nicole')">
+                            <i class="fas fa-user-circle mr-3 text-cyan-400"></i> Nicole
+                        </li>
+                        <li class="flex items-center p-2 rounded-md hover:bg-gray-800 transition duration-200 cursor-pointer" onclick="openProfileModal('kauan')">
+                            <i class="fas fa-user-circle mr-3 text-cyan-400"></i> Kauan
+                        </li>
                     </ul>
                 </section>
-    
+        
             </div>
-    
+        
             <div class="lg:col-span-2 space-y-12">
-    
+        
                 <section id="tecnologias" class="bg-gray-900 p-8 rounded-xl shadow-2xl border border-gray-700" data-aos="fade-left">
                     <h3 class="section-header text-3xl font-bold pl-4 mb-6 pb-2">
                         <i class="fas fa-microchip mr-3"></i> Core Tecnológico
                     </h3>
-    
+        
                     <div class="flex flex-wrap gap-4 mb-6 border-b border-gray-700 pb-4">
                         <button class="tech-tab px-4 py-2 rounded-lg font-semibold transition duration-300 tab-active" data-tech="java">
                             <i class="fab fa-java mr-2"></i> Java / JDBC
@@ -152,7 +241,7 @@
                             <i class="fas fa-code-branch mr-2"></i> Stored Procedures
                         </button>
                     </div>
-    
+        
                     <div id="java-content" class="tech-content space-y-4">
                         <h4 class="text-2xl text-blue-400 font-semibold flex items-center"><i class="fab fa-java mr-2"></i> Java (JDBC) - A Lógica da Aplicação</h4>
                         <p class="text-gray-300">Implementação da lógica, interface de usuário simples (via `JOptionPane` ou console) e a Camada de Acesso a Dados (DAO). O JDBC é o pilar para a comunicação com o SGBD.</p>
@@ -164,7 +253,7 @@ Connection conn = DriverManager.getConnection(URL);
 // e execução de Stored Procedures.</code></pre>
                         </div>
                     </div>
-    
+        
                     <div id="sql-content" class="tech-content space-y-4 hidden">
                         <h4 class="text-2xl text-blue-400 font-semibold flex items-center"><i class="fas fa-database mr-2"></i> SQL Server - Persistência Segura</h4>
                         <p class="text-gray-300">Utilizado como o SGBD para o armazenamento persistente e relacional de todas as entidades críticas do CRM: Clientes, Contatos, Oportunidades e Produtos.</p>
@@ -178,7 +267,7 @@ Connection conn = DriverManager.getConnection(URL);
 );</code></pre>
                         </div>
                     </div>
-    
+        
                     <div id="sp-content" class="tech-content space-y-4 hidden">
                         <h4 class="text-2xl text-blue-400 font-semibold flex items-center"><i class="fas fa-code-branch mr-2"></i> Stored Procedures - Segurança e Desempenho</h4>
                         <p class="text-gray-300">O método de comunicação principal. Ao centralizar a lógica de Inserção/Atualização no banco (Stored Procedures), ganhamos em segurança (mitiga SQL Injection) e desempenho (código pré-compilado).</p>
@@ -192,9 +281,9 @@ try (CallableStatement cs = conn.prepareCall(call)) {
 }</code></pre>
                         </div>
                     </div>
-    
+        
                 </section>
-    
+        
                 <section class="bg-gray-900 p-8 rounded-xl shadow-2xl border border-gray-700" data-aos="fade-left" data-aos-delay="200">
                     <h3 class="section-header text-3xl font-bold pl-4 mb-6 pb-2">
                         <i class="fas fa-list-check mr-3"></i> O Que o CRM Faz
@@ -248,7 +337,7 @@ try (CallableStatement cs = conn.prepareCall(call)) {
                         </ul>
                     </div>
                 </section>
-    
+        
                 <section id="beneficios" class="bg-gray-900 p-8 rounded-xl shadow-2xl border border-gray-700" data-aos="fade-left" data-aos-delay="400">
                     <h3 class="section-header text-3xl font-bold pl-4 mb-6 pb-2">
                         <i class="fas fa-graduation-cap mr-3"></i> O Que Aprendemos
@@ -266,11 +355,11 @@ try (CallableStatement cs = conn.prepareCall(call)) {
                         </ul>
                     </div>
                 </section>
-    
+        
             </div>
-    
+        
         </main>
-    
+        
         <footer class="text-center mt-16 py-6 text-gray-600 text-sm border-t border-gray-800">
             Projeto Integrador CRM - Desenvolvido pela Equipe. 2025
         </footer>
@@ -283,7 +372,100 @@ try (CallableStatement cs = conn.prepareCall(call)) {
             once: true,
         });
 
+        // =========================================================
+        // Dados de Perfil da Equipe e Lógica do Modal
+        // =========================================================
+
+        const defaultAvatar = "https://via.placeholder.com/92/202225/FFFFFF?text=?";
+        const teamProfiles = {
+            'christopher': {
+                name: 'Christopher',
+                role: 'Arquiteto de Dados & Dev Back-end (Java)',
+                bio: 'Focado em garantir a robustez da **arquitetura de persistência** e a segurança das transações CRUD, utilizando Stored Procedures em SQL Server.',
+                photo: defaultAvatar.replace('?', 'C'),
+                github: '#',
+                bannerColor: 'bg-blue-600'
+            },
+            'gabryel': {
+                name: 'Gabryel',
+                role: 'Desenvolvedor Java - POO e Classes',
+                bio: 'Responsável pela implementação dos conceitos de **Programação Orientada a Objetos** em Java, garantindo que as classes de Entidade (POO) sigam os padrões.',
+                photo: defaultAvatar.replace('?', 'G'),
+                github: '#',
+                bannerColor: 'bg-cyan-600'
+            },
+            'mauricio': {
+                name: 'Mauricio',
+                role: 'Modelagem de Banco de Dados (SQL)',
+                bio: 'Especialista em **modelagem relacional**. Garantiu a correta estrutura das tabelas, chaves primárias e relacionamentos (1:N, N:M) para o projeto CRM.',
+                photo: defaultAvatar.replace('?', 'M'),
+                github: '#',
+                bannerColor: 'bg-green-600'
+            },
+            'henrique': {
+                name: 'Henrique',
+                role: 'Analista de Conexão (JDBC)',
+                bio: 'Focado na camada de acesso a dados (DAO) e na utilização correta do **JDBC**. Seu papel foi fundamental na garantia de conexões estáveis com o SQL Server.',
+                photo: defaultAvatar.replace('?', 'H'),
+                github: '#',
+                bannerColor: 'bg-indigo-600'
+            },
+            'nicole': {
+                name: 'Nicole',
+                role: 'Quality Assurance & Tratamento de Erros',
+                bio: 'Garantiu a estabilidade da aplicação com a implementação de **tratamento de exceções** robusto (`try-with-resources`) e testes de CRUD.',
+                photo: defaultAvatar.replace('?', 'N'),
+                github: '#',
+                bannerColor: 'bg-pink-600'
+            },
+            'kauan': {
+                name: 'Kauan',
+                role: 'Desenvolvedor SQL - Stored Procedures',
+                bio: 'Responsável pela escrita e otimização das **Stored Procedures** no SQL Server, garantindo que a lógica de negócio do CRUD fosse executada no SGBD.',
+                photo: defaultAvatar.replace('?', 'K'),
+                github: '#',
+                bannerColor: 'bg-yellow-600'
+            }
+        };
+
+        const modal = document.getElementById('profileModal');
+        const profilePhoto = document.getElementById('profile-photo');
+        const profileHeader = document.getElementById('profile-header');
+        const profileName = document.getElementById('profile-name');
+        const profileRole = document.getElementById('profile-role');
+        const profileBio = document.getElementById('profile-bio');
+        const profileGithub = document.getElementById('profile-github');
+        const profileLinks = document.getElementById('profile-links');
+
+        function openProfileModal(memberId) {
+            const profile = teamProfiles[memberId];
+            if (!profile) return;
+
+            // 1. Preenche o Modal com os dados
+            profileName.textContent = profile.name;
+            profileRole.textContent = profile.role;
+            profileBio.innerHTML = profile.bio;
+
+            // 2. Foto de perfil e links
+            profilePhoto.src = profile.photo;
+            profileGithub.href = profile.github || '#';
+            profileLinks.classList.toggle('hidden', !profile.github || profile.github === '#');
+
+            // 3. Define a cor do banner (Remoção segura das cores)
+            profileHeader.className = 'discord-header'; // Reseta classes
+            profileHeader.classList.add(profile.bannerColor);
+
+            // 4. Mostra o Modal
+            modal.classList.remove('hidden');
+        }
+
+        function closeProfileModal() {
+            modal.classList.add('hidden');
+        }
+
+        // =========================================================
         // Lógica para as Abas Interativas (Tech Tabs)
+        // =========================================================
         document.addEventListener('DOMContentLoaded', () => {
             const tabs = document.querySelectorAll('.tech-tab');
             const contents = document.querySelectorAll('.tech-content');
@@ -292,16 +474,14 @@ try (CallableStatement cs = conn.prepareCall(call)) {
                 tab.addEventListener('click', () => {
                     const tech = tab.getAttribute('data-tech');
 
-                    // Remove a classe 'tab-active' de todos os botões
-                    tabs.forEach(t => t.classList.remove('tab-active', 'bg-blue-900', 'text-blue-300'));
+                    // CORREÇÃO: Remove 'tab-active' de todos os botões
+                    tabs.forEach(t => t.classList.remove('tab-active'));
                     
-                    // Adiciona a classe 'tab-active' ao botão clicado
+                    // Adiciona 'tab-active' ao botão clicado
                     tab.classList.add('tab-active');
 
-                    // Oculta todos os conteúdos
+                    // Oculta/Mostra o conteúdo
                     contents.forEach(content => content.classList.add('hidden'));
-
-                    // Mostra o conteúdo correspondente
                     document.getElementById(tech + '-content').classList.remove('hidden');
                 });
             });
