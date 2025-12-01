@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Integrador: CRM - Java & SQL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Configuração de fonte limpa */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617; /* Cor de fundo Navy mais escura (slate-950) */
+            color: #E2E8F0; /* Cor do texto principal (slate-200) */
+        }
+        /* Estilo para destaque de seção */
+        .section-header {
+            color: #22D3EE; /* Cor Ciano mais forte para destaque */
+            border-left: 6px solid #3B82F6; /* Borda azul para separação */
+        }
+        /* Estilo para o bloco de código aprimorado */
+        pre code {
+            display: block;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            background-color: #111827; /* Fundo escuro para o código (gray-900) */
+            color: #6EE7B7; /* Cor de destaque verde-claro para código */
+            overflow-x: auto;
+            border: 1px solid #1D4ED8; /* Borda azul sutil */
+        }
+        /* Estilo para o botão de tab/card ativo (interatividade) */
+        .tab-active {
+            background-color: #1E3A8A; /* Cor de fundo azul escuro para ativo */
+            color: #93C5FD; /* Cor do texto azul claro para ativo */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <nav class="sticky top-0 z-50 bg-gray-900 shadow-xl border-b border-cyan-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="#" class="flex-shrink-0 text-xl font-bold text-cyan-400">
+                    <i class="fas fa-desktop mr-2"></i> CRM.Java
+                </a>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-4">
+                    <a href="#proposito" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Propósito</a>
+                    <a href="#tecnologias" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Tecnologias</a>
+                    <a href="#arquitetura" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Arquitetura</a>
+                    <a href="#beneficios" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Benefícios</a>
+                    <a href="#equipe" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Equipe por tras do projeto</a>
+                </div>
+                <button id="mobile-menu-button" type="button" class="sm:hidden text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#proposito" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Propósito</a>
+                <a href="#tecnologias" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Tecnologias</a>
+                <a href="#arquitetura" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Arquitetura</a>
+                <a href="#beneficios" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Benefícios</a>
+                <a href="#equipe" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Equipe por tras do projeto</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="p-4 sm:p-8">
+
+        <header class="text-center mb-16 pt-12 pb-10 rounded-2xl shadow-2xl bg-gray-900 border border-blue-800" data-aos="fade-up">
+            <h1 class="text-5xl sm:text-6xl font-extrabold text-white leading-tight">
+                <i class="fas fa-handshake mr-3 text-blue-500 animate-pulse"></i>
+                Projeto Integrador: CRM
+            </h1>
+            <h2 class="text-2xl sm:text-3xl mt-4 font-medium text-cyan-400">
+                Java & SQL Server - Integração Completa
+            </h2>
+            <div class="mt-8">
+                <a href="[LINK_DO_REPOSITORIO_OU_DEMO]" target="_blank" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-blue-600 hover:bg-blue-700 transition duration-300 transform hover:scale-105">
+                    <i class="fab fa-github mr-2"></i> Ver Repositório Completo
+                </a>
+            </div>
+        </header>
+    
+        <main class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
+    
+            <div class="lg:col-span-1 space-y-12">
+    
+                <section id="proposito" class="bg-gray-900 p-8 rounded-xl shadow-2xl border border-gray-700" data-aos="fade-right">
+                    <h3 class="section-header text-3xl font-bold pl-4 mb-6 pb-2">
+                        <i class="fas fa-bullseye mr-3"></i> Propósito Central
+                    </h3>
+                    <div class="space-y-4 text-gray-300">
+                        <p class="text-lg">O projeto implementa um Sistema de Gerenciamento de Relacionamento com o Cliente (CRM) de base, totalmente focado na persistência de dados.</p>
+                        <blockquote class="border-l-4 border-cyan-500 pl-4 italic text-sm">
+                            Motivação: Demonstrar de forma prática a conexão estável e o tráfego de dados eficiente entre uma aplicação back-end (Java) e um banco de dados relacional (SQL Server).
+                        </blockquote>
+                        <p>O Escopo Principal é validar o ciclo completo de CRUD (com foco em Inserção e Leitura) e a aplicação dos conceitos de Programação Orientada a Objetos (POO) e Modelagem de Dados.</p>
+                    </div>
+                </section>
+
+                <section id="arquitetura" class="bg-gray-900 p-8 rounded-xl shadow-2xl border border-gray-700" data-aos="fade-right" data-aos-delay="200">
+                    <h3 class="section-header text-3xl font-bold pl-4 mb-6 pb-2">
+                        <i class="fas fa-cube mr-3"></i> Diagrama de Arquitetura
+                    </h3>
+                    <div class="space-y-4 text-gray-300">
+                        <p>Adotamos uma arquitetura de duas simplificada, onde a lógica de negócios está majoritariamente centralizada no banco de dados.</p>
+                        <ul class="space-y-3 list-none p-0">
+                            <li class="flex items-center"><i class="fas fa-layer-group text-blue-500 mr-3"></i> Camada de Apresentação/Lógica (Java): Aplicação de terminal (`main`), classes de Entidade (POO), e a camada DAO (Data Access Object) para o JDBC.</li>
+                            <li class="flex items-center"><i class="fas fa-server text-cyan-500 mr-3"></i> Camada de Dados (SQL Server): Tabelas, Esquemas Relacionais e Stored Procedures que executam o CRUD.</li>
+                        </ul>
+                        <p class="text-sm italic text-gray-400 mt-4">Isso garante segurança (previne SQL Injection) e desempenho ao usar procedimentos pré-compilados.</p>
+                        
+                    </div>
+                </section>
+    
+                <section id="equipe" class="bg-gray-900 p-8 rounded-xl shadow-2xl border border-gray-700" data-aos="fade-right" data-aos-delay="400">
+                    <h3 class="section-header text-3xl font-bold pl-4 mb-6 pb-2">
+                        <i class="fas fa-users-cog mr-3"></i> A Equipe por tras do projeto
+                    </h3>
+                    <ul class="grid grid-cols-2 gap-4 text-lg text-white">
+                        <li class="flex items-center p-2 rounded-md hover:bg-gray-800 transition duration-200"><i class="fas fa-user-circle mr-3 text-cyan-400"></i> Christopher</li>
+                        <li class="flex items-center p-2 rounded-md hover:bg-gray-800 transition duration-200"><i class="fas fa-user-circle mr-3 text-cyan-400"></i> Gabryel</li>
+                        <li class="flex items-center p-2 rounded-md hover:bg-gray-800 transition duration-200"><i class="fas fa-user-circle mr-3 text-cyan-400"></i> Mauricio</li>
+                        <li class="flex items-center p-2 rounded-md hover:bg-gray-800 transition duration-200"><i class="fas fa-user-circle mr-3 text-cyan-400"></i> Henrique</li>
+                        <li class="flex items-center p-2 rounded-md hover:bg-gray-800 transition duration-200"><i class="fas fa-user-circle mr-3 text-cyan-400"></i> Nicole</li>
+                        <li class="flex items-center p-2 rounded-md hover:bg-gray-800 transition duration-200"><i class="fas fa-user-circle mr-3 text-cyan-400"></i> Kauan</li>
+                    </ul>
+                </section>
+    
+            </div>
+    
+            <div class="lg:col-span-2 space-y-12">
+    
+                <section id="tecnologias" class="bg-gray-900 p-8 rounded-xl shadow-2xl border border-gray-700" data-aos="fade-left">
+                    <h3 class="section-header text-3xl font-bold pl-4 mb-6 pb-2">
+                        <i class="fas fa-microchip mr-3"></i> Core Tecnológico
+                    </h3>
+    
+                    <div class="flex flex-wrap gap-4 mb-6 border-b border-gray-700 pb-4">
+                        <button class="tech-tab px-4 py-2 rounded-lg font-semibold transition duration-300 tab-active" data-tech="java">
+                            <i class="fab fa-java mr-2"></i> Java / JDBC
+                        </button>
+                        <button class="tech-tab px-4 py-2 rounded-lg font-semibold transition duration-300" data-tech="sql">
+                            <i class="fas fa-database mr-2"></i> SQL Server
+                        </button>
+                        <button class="tech-tab px-4 py-2 rounded-lg font-semibold transition duration-300" data-tech="sp">
+                            <i class="fas fa-code-branch mr-2"></i> Stored Procedures
+                        </button>
+                    </div>
+    
+                    <div id="java-content" class="tech-content space-y-4">
+                        <h4 class="text-2xl text-blue-400 font-semibold flex items-center"><i class="fab fa-java mr-2"></i> Java (JDBC) - A Lógica da Aplicação</h4>
+                        <p class="text-gray-300">Implementação da lógica, interface de usuário simples (via `JOptionPane` ou console) e a Camada de Acesso a Dados (DAO). O JDBC é o pilar para a comunicação com o SGBD.</p>
+                        <div class="bg-gray-950 p-4 rounded-lg">
+                            <h5 class="text-white font-medium mb-2">Exemplo de Código (Conexão JDBC):</h5>
+                            <pre><code>String URL = "jdbc:sqlserver://[Server];..."
+Connection conn = DriverManager.getConnection(URL);
+// Uso de Prepared/CallableStatement para segurança
+// e execução de Stored Procedures.</code></pre>
+                        </div>
+                    </div>
+    
+                    <div id="sql-content" class="tech-content space-y-4 hidden">
+                        <h4 class="text-2xl text-blue-400 font-semibold flex items-center"><i class="fas fa-database mr-2"></i> SQL Server - Persistência Segura</h4>
+                        <p class="text-gray-300">Utilizado como o SGBD para o armazenamento persistente e relacional de todas as entidades críticas do CRM: Clientes, Contatos, Oportunidades e Produtos.</p>
+                        <div class="bg-gray-950 p-4 rounded-lg">
+                            <h5 class="text-white font-medium mb-2">Trecho SQL (Criação da Tabela de Clientes):</h5>
+                            <pre><code>CREATE TABLE Clientes (
+    ClienteID INT PRIMARY KEY IDENTITY(1,1),
+    Nome VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) UNIQUE,
+    DataCadastro DATE DEFAULT GETDATE()
+);</code></pre>
+                        </div>
+                    </div>
+    
+                    <div id="sp-content" class="tech-content space-y-4 hidden">
+                        <h4 class="text-2xl text-blue-400 font-semibold flex items-center"><i class="fas fa-code-branch mr-2"></i> Stored Procedures - Segurança e Desempenho</h4>
+                        <p class="text-gray-300">O método de comunicação principal. Ao centralizar a lógica de Inserção/Atualização no banco (Stored Procedures), ganhamos em segurança (mitiga SQL Injection) e desempenho (código pré-compilado).</p>
+                        <div class="bg-gray-950 p-4 rounded-lg">
+                            <h5 class="text-white font-medium mb-2">Chamada de Stored Procedure (Java):</h5>
+                            <pre><code>String call = "{call SP_INSERIR_CLIENTE(?, ?)}";
+try (CallableStatement cs = conn.prepareCall(call)) {
+    cs.setString(1, cliente.getNome());
+    cs.setString(2, cliente.getEmail());
+    cs.executeUpdate();
+}</code></pre>
+                        </div>
+                    </div>
+    
+                </section>
+    
+                <section class="bg-gray-900 p-8 rounded-xl shadow-2xl border border-gray-700" data-aos="fade-left" data-aos-delay="200">
+                    <h3 class="section-header text-3xl font-bold pl-4 mb-6 pb-2">
+                        <i class="fas fa-list-check mr-3"></i> O Que o CRM Faz
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <ul class="space-y-4 list-none p-0">
+                            <li class="flex items-start bg-gray-800 p-3 rounded-lg hover:bg-gray-700 transition duration-200">
+                                <i class="fas fa-user-plus text-blue-400 text-xl mr-3 mt-1"></i>
+                                <div>
+                                    <strong class="text-white">Gerenciamento de Clientes:</strong>
+                                    <p class="text-sm text-gray-400">Criação e listagem de clientes essenciais.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start bg-gray-800 p-3 rounded-lg hover:bg-gray-700 transition duration-200">
+                                <i class="fas fa-phone-alt text-blue-400 text-xl mr-3 mt-1"></i>
+                                <div>
+                                    <strong class="text-white">Vinculação de Contatos:</strong>
+                                    <p class="text-sm text-gray-400">Associação de detalhes de contato a um cliente por ID.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start bg-gray-800 p-3 rounded-lg hover:bg-gray-700 transition duration-200">
+                                <i class="fas fa-box-open text-blue-400 text-xl mr-3 mt-1"></i>
+                                <div>
+                                    <strong class="text-white">Cadastro de Produtos:</strong>
+                                    <p class="text-sm text-gray-400">Inserção de novos produtos com campos opcionais.</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="space-y-4 list-none p-0">
+                            <li class="flex items-start bg-gray-800 p-3 rounded-lg hover:bg-gray-700 transition duration-200">
+                                <i class="fas fa-chart-line text-blue-400 text-xl mr-3 mt-1"></i>
+                                <div>
+                                    <strong class="text-white">Registro de Oportunidades:</strong>
+                                    <p class="text-sm text-gray-400">Inserção de registros de venda/oportunidade com status.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start bg-gray-800 p-3 rounded-lg hover:bg-gray-700 transition duration-200">
+                                <i class="fas fa-history text-blue-400 text-xl mr-3 mt-1"></i>
+                                <div>
+                                    <strong class="text-white">Auditoria Rápida:</strong>
+                                    <p class="text-sm text-gray-400">Exibição dos últimos 5 registros inseridos (teste de `SELECT TOP`).</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start bg-gray-800 p-3 rounded-lg hover:bg-gray-700 transition duration-200">
+                                <i class="fas fa-exclamation-triangle text-blue-400 text-xl mr-3 mt-1"></i>
+                                <div>
+                                    <strong class="text-white">Tratamento de Exceções:</strong>
+                                    <p class="text-sm text-gray-400">Gerenciamento robusto de erros de conexão e SQL (`try-with-resources`).</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+    
+                <section id="beneficios" class="bg-gray-900 p-8 rounded-xl shadow-2xl border border-gray-700" data-aos="fade-left" data-aos-delay="400">
+                    <h3 class="section-header text-3xl font-bold pl-4 mb-6 pb-2">
+                        <i class="fas fa-graduation-cap mr-3"></i> O Que Aprendemos
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-4 text-gray-300">
+                        <ul class="space-y-3 list-none p-0">
+                            <li class="flex items-start text-lg"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i> Padrão JDBC: Domínio na conexão e manipulação de dados com Java.</li>
+                            <li class="flex items-start text-lg"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i> Modelagem Relacional: Fortalecimento na criação de entidades e relacionamentos (1:N, N:M).</li>
+                            <li class="flex items-start text-lg"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i> POO Prática: Aplicação de classes, atributos e encapsulamento em um contexto real.</li>
+                        </ul>
+                        <ul class="space-y-3 list-none p-0">
+                            <li class="flex items-start text-lg"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i> Segurança: Uso de `CallableStatement` contra SQL Injection.</li>
+                            <li class="flex items-start text-lg"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i> Stored Procedures: Transferência da lógica de negócios para o SGBD.</li>
+                            <li class="flex items-start text-lg"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i> Tratamento de Erros: Implementação de `try-with-resources` e exceções SQL.</li>
+                        </ul>
+                    </div>
+                </section>
+    
+            </div>
+    
+        </main>
+    
+        <footer class="text-center mt-16 py-6 text-gray-600 text-sm border-t border-gray-800">
+            Projeto Integrador CRM - Desenvolvido pela Equipe. 2025
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        // Lógica para as Abas Interativas (Tech Tabs)
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tech-tab');
+            const contents = document.querySelectorAll('.tech-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tech = tab.getAttribute('data-tech');
+
+                    // Remove a classe 'tab-active' de todos os botões
+                    tabs.forEach(t => t.classList.remove('tab-active', 'bg-blue-900', 'text-blue-300'));
+                    
+                    // Adiciona a classe 'tab-active' ao botão clicado
+                    tab.classList.add('tab-active');
+
+                    // Oculta todos os conteúdos
+                    contents.forEach(content => content.classList.add('hidden'));
+
+                    // Mostra o conteúdo correspondente
+                    document.getElementById(tech + '-content').classList.remove('hidden');
+                });
+            });
+
+            // Lógica para o menu mobile
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
