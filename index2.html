@@ -185,7 +185,7 @@
                         <i class="fas fa-cube mr-3"></i> Diagrama de Arquitetura
                     </h3>
                     <div class="space-y-4 text-gray-300">
-                        <p>Adotamos uma arquitetura de duas simplificada, onde a lógica de negócios está majoritariamente centralizada no banco de dados.</p>
+                        <p>Adotamos uma arquitetura de duas camadas simplificadas, onde a lógica de negócios está majoritariamente centralizada no banco de dados.</p>
                         <ul class="space-y-3 list-none p-0">
                             <li class="flex items-center"><i class="fas fa-layer-group text-blue-500 mr-3"></i> Camada de Apresentação/Lógica (Java): Aplicação de terminal (`main`), classes de Entidade (POO), e a camada DAO (Data Access Object) para o JDBC.</li>
                             <li class="flex items-center"><i class="fas fa-server text-cyan-500 mr-3"></i> Camada de Dados (SQL Server): Tabelas, Esquemas Relacionais e Stored Procedures que executam o CRUD.</li>
@@ -345,7 +345,7 @@ try (CallableStatement cs = conn.prepareCall(call)) {
                     <div class="grid md:grid-cols-2 gap-4 text-gray-300">
                         <ul class="space-y-3 list-none p-0">
                             <li class="flex items-start text-lg"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i> Padrão JDBC: Domínio na conexão e manipulação de dados com Java.</li>
-                            <li class="flex items-start text-lg"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i> Modelagem Relacional: Fortalecimento na criação de entidades e relacionamentos (1:N, N:M).</li>
+                            <li class="flex items-start text-lg"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i> Modelagem Relacional: Fortalecimento na criação de entidades e relacionamentos (1:N, N:M e 1:1).</li>
                             <li class="flex items-start text-lg"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i> POO Prática: Aplicação de classes, atributos e encapsulamento em um contexto real.</li>
                         </ul>
                         <ul class="space-y-3 list-none p-0">
@@ -497,3 +497,4 @@ try (CallableStatement cs = conn.prepareCall(call)) {
     </script>
 </body>
 </html>
+
